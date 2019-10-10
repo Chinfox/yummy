@@ -1,4 +1,5 @@
 const http = require('http');
+const app = require('./app');
 
 /**
  * 	normalizePort returns a valid port whether provided as string
@@ -17,7 +18,7 @@ const normalizePort = val => {
     return false;
 };
 const port = normalizePort(process.env.PORT || 3000);
-//	app.set('port', port);
+app.set('port', port);
 
 /**
  * 	errorHandler checks some common system errors and handles them properly
@@ -42,10 +43,8 @@ const errorHandler = error => {
 	}
 };
 
-//	create an HTTP server object
-const server = http.createServer((req, res) => {
-    res.end('server responding');
-});
+//	create an HTTP Express server
+const server = http.createServer(app);
 
 server.on('error', errorHandler);
 server.on('listening', () => {
