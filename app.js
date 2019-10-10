@@ -1,7 +1,16 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
 
 const app = express();
+
+mongoose.connect('mongodb+srv://owi:KW1vE2szoTp0EeGY@cluster0-7cerh.mongodb.net/admin?retryWrites=true&w=majority')
+    .then(() => {
+        console.log('Database connection successful');
+    })
+    .catch((err) => {
+        console.log(`${err}: Failed to connect to Database`);
+    });
 
 app.use(bodyParser.json());
 
@@ -13,6 +22,7 @@ app.use((req, res, next) => {
     next();
 });
 
+//  POST a recipe
 app.post('/api/recipes', (req, res, next) => {
     console.log(req.body);
     res.status(201).json({
@@ -20,7 +30,7 @@ app.post('/api/recipes', (req, res, next) => {
     });
 });
 
-//  get all recipes
+//  GET all recipes
 app.use('/api/recipes', (req, res, next) => {
     const recipeSamples = [
         {
