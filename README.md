@@ -34,11 +34,6 @@ Let's start with running commands in your command line interface (CLI)
 http://localhost:3000/api/recipes/
 ```
 
-#### Get favorite restaurants
-```
-http://localhost:1337/restaurants/?is_favorite=true
-```
-
 #### Get a recipe by id
 ```
 http://localhost:3000/api/recipes/<id>
